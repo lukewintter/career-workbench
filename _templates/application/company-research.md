@@ -7,4 +7,4 @@ prompt_ref: config/research-prompt.md
 
 # Company research
 
-Paste the full output from the research prompt (`config/research-prompt.md`) below.
+[paste research output here]

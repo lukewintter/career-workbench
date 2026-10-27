@@ -6,15 +6,15 @@ interviewer_name: tbd
 interviewer_role: "e.g. recruiter | hiring manager | interviewer"
 interviewer_linkedin_profile: "LinkedIn URL"
 format: "digital interview | in-person interview | case study | panel"
+duration_minutes: tbd
+round_type: "recruiter screen | hiring manager | team interview | case study | panel"
 ---
 
 # Round prep — R# [description]
 
-## Signals to send (must-land)
+## Round strategy
 
-- Signal 1: tbd
-- Signal 2: tbd
-- Signal 3: tbd
+## Signals to send (must-land)
 
 ## Most relevant win stories
 
@@ -25,37 +25,14 @@ ws-ref: `wins/WS-###-short-title.md`
 why-relevant-tags: [tbd, tbd]
 ```
 
-- Situation: tbd
-- Task: tbd
-- Actions:
-  - tbd
-  - tbd
-- Impact: tbd
+## Expected questions and answer scaffolding
 
-### [short title]
+### Most likely for this round
 
-```yaml
-ws-ref: `wins/WS-###-short-title.md`
-why-relevant-tags: [tbd, tbd]
-```
-
-- Situation: tbd
-- Task: tbd
-- Actions:
-  - tbd
-  - tbd
-- Impact: tbd
-
-## Expected questions and prepared answers
-
-### Question: tbd
-
-Answer: tbd
-
-### Question: tbd
-
-Answer: tbd
+### Backup if they probe deeper
 
 ## Questions to ask them
 
-- tbd
+### Priority for this round
+
+### Save for later rounds

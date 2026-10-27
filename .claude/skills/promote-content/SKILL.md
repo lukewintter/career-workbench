@@ -1,0 +1,1 @@
+../../../.agents/skills/promote-content/SKILL.md

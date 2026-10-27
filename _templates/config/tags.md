@@ -17,7 +17,7 @@ Keep to this taxonomy. Do not invent new tags without updating this list.
 
 Each win story should have 2-3 tags. ATS keywords are not stored in win stories; they live in `config/targets.md` as per-track keyword banks.
 
-Tags may evolve over time. If a win story does not fit the existing taxonomy, the agent should flag a suggested new tag to the human rather than adding it unilaterally. The human decides, updates this file, and instructs the agent to apply it retrospectively where relevant.
+Tags may evolve over time. If a win story does not fit the existing taxonomy, the agent should flag a suggested new tag to the user rather than adding it unilaterally. The user decides, updates this file, and instructs the agent to apply it retrospectively where relevant.
 
 ## Reference example (populated)
 

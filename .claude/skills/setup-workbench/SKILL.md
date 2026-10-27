@@ -1,0 +1,1 @@
+../../../.agents/skills/setup-workbench/SKILL.md

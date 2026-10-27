@@ -10,10 +10,4 @@ deadline: tbd             # yyyy-mm-dd or tbd
 
 # Job ad (raw)
 
-## Job ad
-*Paste the full job description below exactly as posted. Do not edit, normalize, or summarise.
-This is the primary input for all generated outputs in this application folder.*
-
----
-
 [paste job ad here]

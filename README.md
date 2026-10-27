@@ -1,53 +1,50 @@
 # career-workbench
 
-A personal system for managing your professional narrative — from raw career evidence through tailored CVs, cover letters, interview prep, and application tracking. Built for one human and the AI agents that help them.
+A personal system for managing your professional narrative — from raw career evidence through tailored CVs, cover letters, interview prep, and application tracking. You write the source material; AI agents assemble it into tailored outputs for each opportunity, with every claim traceable to real evidence and nothing invented.
 
-You write the source material (who you are, what you've done, what you're targeting). Agents assemble it into tailored outputs for each opportunity. Every claim stays traceable to real evidence. Nothing is invented.
-
-**If you are an AI agent working in this repo:** read `AGENTS.md` first. It is the source of truth for instructions.
+> **Read [PRODUCT.md](PRODUCT.md) first** for the mental model — what the workbench is, the five core concepts, how you and agents divide the work, and the principles behind it. This README is the how: stand it up and run it.
 
 ---
 
-## What you can do with this
+## Quickstart
 
-- **Build your evidence base** — write win stories, update role files, promote reusable content
-- **Apply for jobs** — start applications, research companies, build tailored CVs and cover letters
-- **Run interview rounds** — prepare before, debrief after, capture feedback
-- **Maintain and refine** — track applications, refresh your positioning as you learn what lands
+This repo is a **template**. You create your own private copy, open it in your AI tool, and fill it with your own career material — the folders for that material don't exist yet; setup creates them.
 
-The [Workflows](#workflows) section indexes each workflow with a short description. Workflow procedures live in `.agents/skills/`; `AGENTS.md` holds the rules and conventions agents follow.
+1. **Use this template → choose Private.** On the public repo, click **Use this template** → **Create a new repository**, and set visibility to **Private**. Your workbench holds personal career data, so it must be private. This gives you a clean, standalone repo with no fork relationship.
+2. **Open it in your AI tool.** Open the repo folder in an agent that reads `AGENTS.md` — for example Claude Code, Codex, Cursor, or GitHub Copilot. The rules and workflows load from the repo itself; there's nothing to configure. If something doesn't respond as expected, see [Troubleshooting](#troubleshooting).
+3. **Recommended — start from what you already have.** Drop your current CV, past cover letters, or a LinkedIn export into `reference-materials/`, and read [reference-materials/README.md](reference-materials/README.md) for what happens next. Setup uses them as a starting point, and you confirm everything before it's written. CVs and cover letters you'd still send are kept as [references](#references) that future ones are modelled on. Your raw documents stay uncommitted. No documents? Setup starts from scratch.
+4. **Run setup.** Ask your agent to set up the workbench (or type `/setup-workbench`). It walks you through building your foundation step by step — config, role files, win stories, reusable assets — drawing on anything in `reference-materials/` and asking you about the rest. Each step is refined with you and approved before the next one starts. It's a long conversation, so you can stop after any step and pick up again in a later session.
 
----
-
-## Key concepts
-
-Understanding five things will orient you to the whole repo:
-
-**Config** (`config/`) defines who you are (`me.md`), what you're targeting (`targets.md`), and the tag taxonomy (`tags.md`). Tags are how agents match your win stories to job ads — when generating a CV, the agent identifies themes in the job ad and retrieves win stories with matching tags. These files shape how agents frame every output.
-
-**Role files** (`roles/`) provide context and framing for each job you've held. They describe what the company was, what you were hired to do, and what your scope looked like — but they don't duplicate achievement content. They point to win stories instead.
-
-**Win stories** (`wins/`) are the foundation of all generated content. Each is a structured STAR account of something you achieved — situation, task, actions, results — tagged for retrieval. They are the primary source of truth for every claim in a CV or cover letter.
-
-**Assets** (`assets/`) are promoted, reusable language blocks — CV paragraphs, cover letter body sections, interview answers. Content is promoted here deliberately once it's been polished and tested across applications. The bar: would you use it nearly verbatim in at least three different applications?
-
-**Applications** (`applications/`) contain one folder per opportunity — the job ad, tailored CV, cover letter, company research, and round-by-round interview records. Generated outputs live here. Strong new content can be promoted back into `assets/` with your approval.
-
-The flow: **config** shapes framing → **roles** provide context → **win stories** supply evidence → **assets** store reusable blocks → **applications** receive tailored outputs.
+Browse the [`example/`](example/) folder to see the shape of a filled workbench before you start. Delete it whenever you like.
 
 ---
 
 ## Repo structure
 
+What's included in the template (before you run setup):
+
 ```
 career-workbench/
-├── README.md              # Human orientation
+├── README.md              # This file — how to stand it up and run it
+├── PRODUCT.md             # The why and the mental model — read first
 ├── AGENTS.md              # Agent instructions and strict rules
-├── ROADMAP.md             # Build status and planned work for the repo (temporary)
-├── tracker.md             # Cross-application status table
+├── CLAUDE.md              # Points Claude Code at AGENTS.md
+├── LICENSE                # MIT
+├── .gitignore             # Keeps OS, editor, and local-settings clutter out of git
 │
 ├── .agents/skills/        # Workflow skills (one folder per workflow)
+├── .claude/skills/        # Links to .agents/skills/ so Claude Code finds them
+├── _templates/            # Copy from here to start anything new (for agents or humans)
 │
+├── example/               # A synthetic, filled workbench to browse — then delete
+└── reference-materials/
+    ├── README.md          # Drop existing CVs/cover letters here for setup to start from
+    └── .gitignore         # Keeps your dropped documents out of git
+```
+
+Setup creates your runtime folders (these are **not** in the template — you build them):
+
+```
 ├── config/
 │   ├── me.md              # Identity, narrative, voice
 │   ├── targets.md         # Role tracks, emphasis, filters
@@ -62,13 +59,16 @@ career-workbench/
 │   ├── cv-content.md              # Modular paragraphs and bullets, by role
 │   ├── cover-letter-boilerplate.md   # Salutations and sign-offs
 │   ├── cover-letter-content.md       # Openings, body blocks, closings
-│   └── interview-answers.md          # Core narratives + track variants
+│   ├── interview-answers.md          # Core narratives + track variants
+│   ├── cv-references/                # Past CVs you'd still send (see References below)
+│   └── cover-letter-references/      # Past cover letters you'd still send
 │
 ├── applications/          # One folder per opportunity
 │   └── company-role-yyyy-mm/
 │       ├── job-ad.md              # Raw job description, preserved exactly
 │       ├── application-notes.md   # Private: motivation, gut feel, red flags
 │       ├── company-research.md    # Strategy, product, culture, key people
+│       ├── interview-intel.md     # Hiring process, values, interview signals
 │       ├── cv.md                  # Tailored CV for this application
 │       ├── cover-letter.md        # Tailored cover letter
 │       └── R#-description/        # One folder per interview round
@@ -78,97 +78,70 @@ career-workbench/
 │           ├── transcript.md      # Raw call transcript (optional)
 │           └── summary.md         # AI-generated call summary (optional)
 │
-└── _templates/            # Copy from here to start anything new (for agents or humans)
+└── tracker.md             # Cross-application status table
 ```
 
----
+The order matters: tags should exist before you tag win stories, and win stories should exist before you turn them into reusable content. `setup-workbench` walks the full sequence.
 
-## Getting started
+### References
 
-### First-time setup
+References are past CVs and cover letters you'd still send, saved as markdown in `assets/cv-references/` and `assets/cover-letter-references/`. Setup offers to save them from what you drop in `reference-materials/`; you can add more any time, named like `2026-05-01-company-cv.md`.
 
-Think of setup in three phases:
-
-1. **Define the frame** — create `config/me.md`, `config/targets.md`, `config/tags.md`, and `config/research-prompt.md` from `_templates/config/`.
-2. **Build the evidence base** — add role files in `roles/` and win stories in `wins/`.
-3. **Set up reusable outputs** — fill `assets/` and create `tracker.md`.
-
-Everything starts from `_templates/`, and the order matters: tags should exist before you tag win stories, and win stories should exist before you turn them into reusable content. If you're using an agent, invoke `/setup-workbench` to walk through the full bootstrap sequence; you provide the substance and approve the results.
-
-### After setup
-
-Your evidence base is never truly done — continue to [build your evidence base](#build-your-evidence-base) as you uncover new win stories from past roles or gain new experience. When you're ready to pursue an opportunity, follow [apply for jobs](#apply-for-jobs).
-
----
-
-## Working with agents
-
-This repo is designed so that you direct AI agents (in Cursor, Claude, or any tool that reads `AGENTS.md`) and they do the assembly work. The system uses three layers: `AGENTS.md` defines rules and conventions, `.agents/skills/` contains workflow procedures, and `_templates/` provides output skeletons.
-
-**Building evidence** is human-led — you write config, role files, and win stories. Agents can help draft and refine, but the voice and approval are yours.
-
-**Applying and interviewing** is agent-driven — agents build tailored CVs, cover letters, and prep docs by assembling your evidence base against the job ad. You review everything before it's used.
-
-**Invoking workflows** — agents will pick up the right skill automatically from context. In Cursor, you can also invoke any skill explicitly via `/skill-name` (e.g. `/write-win-story`, `/build-cv`). You can also direct agents with natural language; `AGENTS.md` ensures they follow the same rules either way.
-
-**What agents will never do** (enforced by `AGENTS.md`):
-
-- Write application outputs back into source files — generated content always goes in `applications/`
-- Invent achievements or metrics not in your evidence base
-- Include private sections (`## Reflection`, `## Timeline`) in any output
-- Promote content to `assets/` without your approval
+- **They set the style, not the facts.** `build-cv` matches the length and density of your two most recent reference CVs. `build-cover-letter` matches the voice, structure, and length of your reference letters. Neither takes claims from them — claims come only from your win stories and role files.
+- **Their wording can be promoted.** `promote-content` can lift a strong phrase from a reference into your reusable blocks, with your approval.
+- **Without them, outputs still work** — voice then comes from `config/me.md` alone, which is a weaker model of how you write.
 
 ---
 
 ## Workflows
 
-You can run the following workflows with natural language, or invoke them explicitly in Cursor via `/skill-name`. Workflow procedures live in `.agents/skills/`.
+You can run the following workflows with natural language, or invoke them explicitly via `/skill-name` where your tool supports it. Workflow procedures live in `.agents/skills/`.
 
 ### Build your evidence base
 
-- **Write a new win story** (`/write-win-story`) — Add a new numbered, tagged STAR file in `wins/` from `_templates/win-story.md`; end with `## Reflection` (private; never included in generated outputs).
-- **Update a role file** (`/update-role`) — Align the right `roles/` file with reality: add dated `## Timeline` entries, refresh `## Key initiatives`, and link new evidence from `## Win stories`.
-- **Promote content to assets** (`/promote-content`) — Move approved bullets or paragraphs into the correct `assets/` file when they’re ready to reuse, then log the promotion under `## Derived assets` on the source win story.
+- **Write a new win story** (`/write-win-story`) — Capture an achievement as a tagged STAR story in `wins/` — the evidence behind every claim.
+- **Create or update a role file** (`/update-role`) — Add a job you've held, or keep a role's context, scope, and key initiatives current and link new evidence to it.
+- **Promote content to assets** (`/promote-content`) — Move proven language from a finished CV, a win story, or a reference into your reusable `assets/` library, with your approval.
 
 ### Apply for jobs
 
-- **Start a new application** (`/start-application`) — Copy `_templates/application/` to `applications/company-role-yyyy-mm/`, paste the raw job description into `job-ad.md`, and capture private notes in `application-notes.md`.
-- **Research a company** (`/research-company`) — Fill `company-research.md` using the research prompt in `config/research-prompt.md` (often via a deep-research tool); start early so interview prep stays grounded.
-- **Build a tailored CV** (`/build-cv`) — Build `cv.md` for that folder from the job ad, tags, win stories, and `assets/cv-content.md`, then verify every claim traces to evidence.
-- **Build a cover letter** (`/build-cover-letter`) — Build `cover-letter.md` from `assets/cover-letter-content.md` and the job ad, then tune tone before you send.
+- **Start a new application** (`/start-application`) — Spin up an `applications/` folder for an opportunity, with the job ad and your private notes.
+- **Research a company** (`/research-company`) — Build a research brief on the company (often via a deep-research tool) so prep stays grounded.
+- **Capture interview intel** (`/capture-interview-intel`) — Optional step to capture hiring process, values, and interview signals — usually when the company has rich material publicly available.
+- **Build a tailored CV** (`/build-cv`) — Assemble a tailored CV from your evidence base and pre-approved assets (`assets/cv-content.md`), with every claim traceable. Length and density follow your two most recent [reference](#references) CVs.
+- **Build a cover letter** (`/build-cover-letter`) — Draft a cover letter tuned to the role and company, in the voice, structure, and length of your [reference](#references) letters.
 
 ### Run interview rounds
 
-- **Prepare for a round** (`/prep-round`) — Copy `_templates/round/` into `applications/.../R#-description/`, record who you meet in `prep.md`, and request prep tailored to the round and interviewer.
-- **Debrief after a round** (`/debrief-round`) — Record outcomes in `debrief.md` soon after the call; add `transcript.md` / `summary.md` if they exist, then log `feedback.md` once you know whether the process continues or stops.
+- **Prepare for a round** (`/prep-round`) — Prepare for a round: who you'll meet, likely questions for the stage, and prepped answers — informed by any previous rounds.
+- **Debrief after a round** (`/debrief-round`) — Capture how a round went and the intel gathered, add a transcript or summary if you have one, and record whether the process continues.
+- **Critique an interview round** (`/critique-round`) — Get a candid critique of how a round went and where to sharpen for next time.
 
 ### Maintain and refine the system
 
-- **Update the tracker** (`/update-tracker`) — Sync `tracker.md` with each application’s status (e.g. applied, interview scheduled, round completed, offer, rejected, withdrawn); it’s the single cross-application view in the repo.
-- **Refresh workbench** (`/refresh-workbench`) — Revisit `tracker.md`, `config/targets.md`, `assets/`, gaps in win stories, and `config/me.md` on a rhythm that fits you so targets and reusable copy match what you pursue and what lands.
-- **Setup workbench** (`/setup-workbench`) — Bootstrap the repo from scratch: create config, role files, win stories, assets, and tracker from `_templates/`.
-
----
-
-## Design principles
-
-1. **Atomic evidence, composable outputs.** Small truth units — win stories, role context, promoted assets — assembled into different narratives depending on the target.
-2. **Separate facts from framing.** Facts live in source files. Framing varies by target and lives in config and generated outputs.
-3. **Every claim backed by a pointer.** CV bullets and cover letter paragraphs trace back to a win story or role file. No hallucination.
-4. **Targets are lenses, not separate repositories.** Different role tracks are different emphases over the same base material.
-5. **Promoted assets, not derived assets.** Content in `assets/` is promoted deliberately once polished. Never first drafts.
-6. **Role files frame the story, win stories tell it.** Role files hold context, win stories hold achievements. No duplication.
-7. **Don't build for problems that don't exist yet.** Start lean, add complexity when needed.
-8. **Consistent structure over flexible structure.** Especially important for agent navigation.
+- **Update the tracker** (`/update-tracker`) — Sync `tracker.md`, your single cross-application status view, with each application.
+- **Refresh workbench** (`/refresh-workbench`) — Periodically revisit targets, assets, and win-story gaps so the repo matches what you're pursuing.
+- **Setup workbench** (`/setup-workbench`) — Bootstrap the whole repo from `_templates/` by interviewing you, starting from anything in `reference-materials/` and saving the CVs and letters you'd still send as references.
 
 ---
 
 ## Best practices
 
 - **Keep generated outputs contained** — application-specific outputs stay in `applications/company-role-yyyy-mm/`; source files remain your reusable evidence base.
-- **Treat private sections as private** — never reuse content from `## Reflection`, `## Timeline`, or `application-notes.md` in outward-facing materials.
+- **Treat private sections as private** — never reuse content from `## Reflection`, `## Timeline`, `## Growth edges`, or `application-notes.md` in outward-facing materials. The reflection, timeline, and growth-edge sections are optional — fill them if they help you. `application-notes.md` is different: the workflows keep its timeline and contacts current, so it's private but not optional.
 - **Version regularly** — commit after meaningful milestones, especially after writing win stories, setting up an application folder, or completing an interview round debrief.
-- **Update roles and win stories while fresh** — Review and update your role files and win stories regularly (at least monthly or quarterly). Capture achievements, key initiatives, and impact while details are current—don't wait until you need them for an application.
-- **Ask the agent to interview you** — Use the agent as an interviewer to help uncover new angles or overlooked impact in your past roles and win stories. Let it ask follow-ups, dig for specifics, and help you spot wins you’ve overlooked. You probably have more stories (and impact) than you realize — a good conversation can bring them to the surface.
+- **Update roles and win stories while fresh** — review and update your role files and win stories regularly (at least quarterly). Capture achievements, key initiatives, and impact while details are current — don't wait until you need them for an application.
+- **Ask the agent to interview you** — use the agent as an interviewer to help uncover new angles or overlooked impact in your past roles and win stories. Let it ask follow-ups, dig for specifics, and help you spot wins you've overlooked. You probably have more stories (and impact) than you realize — a good conversation can bring them to the surface.
 
 ---
+
+## Troubleshooting
+
+### Workflows don't seem to run
+
+Every workflow announces itself: a reply that starts with **"Using `setup-workbench` workflow"** (or the matching workflow name) means it loaded. If you ask your agent to set up the workbench and the reply doesn't start that way:
+
+- **Start the session with "Read AGENTS.md and follow it."** Its workflow table points the agent to each skill, so plain-language requests work even when slash commands don't.
+- **Slash commands missing?** Skills ship in `.agents/skills/` (read by Codex, Cursor, GitHub Copilot, and Gemini CLI) and `.claude/skills/` (Claude Code). If your tool uses another folder, check its docs.
+- **Gemini CLI** reads `GEMINI.md` by default. Point it at `AGENTS.md` with the `context.fileName` setting.
+- **Windows:** `.claude/skills/` uses symlinks. If they arrived as small text files, enable Git's symlink support (`core.symlinks`) and clone again.

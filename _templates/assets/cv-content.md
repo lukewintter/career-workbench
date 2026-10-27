@@ -4,34 +4,28 @@ last-updated: yyyy-mm-dd
 
 # CV Content Library
 
-Promoted CV blocks for direct use in applications. Content is promoted
-here deliberately once polished and tested. Never add first drafts.
-The bar is: usable nearly verbatim in at least three different applications.
+Curated, reusable CV blocks, selected during a build by tag-match. `build-cv`
+reads this file but never writes it; the only writer is `promote-content` (the
+post-build promotion audit). A block earns its place only when the user deliberately
+promotes it — there is no automatic or reuse-count rule.
+
+Per-block metadata is `tags` (the selection key) + `ws-refs` (backing win
+stories; `[]` if none — and flag the gap). Nothing else is stored: origin,
+recency, and usage are derivable from git + live-search over `applications/`.
+
+Structure per role: one or more `#### Variant:` paragraph blocks (one → used
+as-is; several → build selects by tag-match) plus an optional `### Bullet pool`.
 
 ---
 
 ## Professional Summary
 
+#### Variant: <name>
 ```yaml
-ws-refs: [WS-###, WS-###, WS-###]
 tags: [ux, strategy]
+ws-refs: [WS-###]
 ```
-Summary variant angled toward UX and product strategy. The claims
-made here should be backed by the referenced win stories.
-
-```yaml
-ws-refs: [WS-###, WS-###, WS-###]
-tags: [commercial, stakeholders]
-```
-Summary variant angled toward commercial impact and stakeholder
-management.
-
-```yaml
-ws-refs: [WS-###, WS-###, WS-###]
-tags: [platform, data]
-```
-Summary variant angled toward platform thinking and data-informed
-decision making.
+Summary variant angled toward a theme. Claims must be backed by the referenced win stories.
 
 ---
 
@@ -43,31 +37,20 @@ role:
 dates:
 ```
 
-### Paragraphs
+### Paragraph variants
 
+#### Variant: <name>
 ```yaml
-ws-refs: [WS-###, WS-###]
 tags: [strategy, platform]
-```
-Prose paragraph for this role. Can stand alone or be followed by bullets.
-
-```yaml
-ws-refs: [WS-###, WS-###]
-tags: [commercial, stakeholders]
-```
-Alternative paragraph angled toward a different theme.
-
-### Bullets
-*Optional — only used when lifting specific achievements out of prose.*
-
-```yaml
 ws-refs: [WS-###]
-tags: [commercial, data]
 ```
-Verb-led achievement with quantified impact.
+Prose paragraph for this role.
 
-```yaml
-ws-refs: [WS-###]
-tags: [delivery, platform]
-```
-Another achievement bullet.
+### Bullet pool
+*Optional — selectable achievement bullets; build picks the subset that matches the job.*
+
+- ```yaml
+  tags: [commercial, data]
+  ws-refs: [WS-###]
+  ```
+  Verb-led achievement with quantified impact.

@@ -1,0 +1,78 @@
+# This file is also published to the public template. Keep out any rule that
+# would reveal something private (names, companies, personal paths).
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux/Unix metadata
+*~
+.fuse_hidden*
+
+# Windows metadata
+Thumbs.db
+Desktop.ini
+
+# Editor and IDE files
+.idea/
+.vscode/
+.obsidian/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Vim/Neovim swap and backup files
+*.swp
+*.swo
+
+# Logs and runtime files
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Environment and local secrets
+.env
+.env.*
+*.local
+
+# Local public-sync overrides (paths may differ per machine)
+scripts/sync.env
+
+# Temporary and cache directories
+.tmp/
+tmp/
+temp/
+.cache/
+.worktrees/
+
+# Package manager artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Build and generated output
+dist/
+build/
+coverage/
+
+# Claude app metadata (but track skills so they work as slash commands)
+.claude/*
+!.claude/skills/
+!.claude/skills/**
+.claude/skills/.DS_Store
+
+# Local staging area for incoming application materials
+_inbox/

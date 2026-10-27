@@ -1,0 +1,1 @@
+../../../.agents/skills/start-application/SKILL.md

@@ -6,36 +6,27 @@ date: "YYYY-MM-DD"
 
 # Round debrief — R# [description]
 
-## Raw notes
+## Memory debrief
 
-tbd
+### Gut feel
 
-## Questions asked and my responses
+### Rapport
+
+### What landed
+
+### What felt weaker
+
+### Product / company gut feel
+
+## Transcript walkthrough
+
+### [topic or question group]
 
 - Question: tbd
-  - My answer: tbd
-  - How it landed: tbd
-
-## What worked
-
-- tbd
-
-## What did not land
-
-- tbd
+- My answer:
+  - tbd
+- How it landed: tbd
 
 ## Company intel gathered
 
-- tbd
-
-## Gut feeling
-
-tbd
-
 ## Open threads
-
-- tbd
-
-## Improvements for next round
-
-- tbd

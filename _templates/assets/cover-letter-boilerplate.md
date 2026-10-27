@@ -12,7 +12,6 @@ here; substantive narrative belongs in `assets/cover-letter-content.md`.
 ## Salutations
 
 - Dear [Hiring manager name],
-- Dear hiring manager,
 - Hi!
 - Hi, 
 - Hi [Company name],

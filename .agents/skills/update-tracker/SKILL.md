@@ -19,16 +19,26 @@ The user explicitly asks to update `tracker.md`, or a round's `feedback.md` has 
 
 Read before starting:
 - `tracker.md`
+- The relevant application's `application-notes.md` when an application folder exists
 - The relevant application's `feedback.md` (when triggered by a round outcome)
 
 ## Steps
 
 1. Read `tracker.md` to see current application statuses.
-2. Update the relevant application row to match the new status.
-3. Use the controlled vocabulary for status values: applied, interview scheduled, round completed, offer, rejected, withdrawn, continuing, closed.
+2. Identify the corresponding application folder from the tracker row or user request.
+3. Update the relevant application row to match the new status.
+4. Check the corresponding `application-notes.md` and add a new entry to `## Timeline and process` for the same status change.
+5. Use the controlled vocabulary from `tracker.md`:
+   - Stage: `applied`, `screening`, `interviewing`, `offer`
+   - Status: `awaiting-reply`, `action-needed`, `scheduled`, `closed`
+   - Outcome: `accepted`, `rejected`, `withdrawn`, `ghosted`
 
 ## Gotchas
 
-- Do not update `tracker.md` unless explicitly asked, or when reconciling status after a round's `feedback.md` records an outcome.
 - Use the status vocabulary consistently — don't invent new status labels.
-- This is the single cross-application view in the repo; keep it accurate and current.
+- `Stage` is the furthest point reached and should only move forward.
+- `Status` is the current operational state.
+- `Outcome` is blank until the process ends.
+- This is the single cross-application view in the repo — the HQ view of all active and closed applications, answering "what's happening right now, and what do I need to do next?".
+- Update whenever something changes — a reply received, a round scheduled, a decision made. Keep `last-updated` current so `awaiting-reply` status stays meaningful.
+- Keep `application-notes.md` as the durable per-application history. If the matching notes file is missing, say so and still update `tracker.md`.

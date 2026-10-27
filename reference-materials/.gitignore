@@ -1,0 +1,4 @@
+# Keep dropped documents out of git: only this file and the README are tracked.
+*
+!.gitignore
+!README.md
