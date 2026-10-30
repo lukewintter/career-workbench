@@ -27,7 +27,7 @@ Work through the steps one at a time with the user, and get the user's approval 
 For each step, or each section of a config file:
 
 1. **Gather.** Start from the reference materials sorted in Step 1, if any, and ask targeted questions about anything they don't cover. Treat any metric, outcome, or cause-and-effect claim in the materials as a question for the user, not a fact.
-2. **Draft and refine.** Show a draft and revise it with the user. Expect several rounds; when something is unclear, ask instead of guessing.
+2. **Draft and refine.** Show a draft and revise it with the user. Expect several rounds. Fill only what the user said or confirmed; leave the rest `tbd` and ask, rather than filling gaps with plausible inferences (a motive, a preference, a philosophy).
 3. **Approve and move on.** Write the file only after the user approves it, then tell the user what the next step is.
 
 Never copy the raw documents into source folders; the approved reference copies in Step 10 are the only exception. Setup often spans several sessions: when resuming, check which steps' files already exist and confirm with the user where to pick up.
@@ -44,7 +44,7 @@ Never copy the raw documents into source folders; the approved reference copies 
 - [ ] Step 7: Write win stories — for each story, follow the `write-win-story` skill end-to-end (template copy, `WS-###-company-short-title.md` naming, frontmatter, sections). Start with the strongest 4–6 stories. Tag each with 2–3 tags from `config/tags.md`.
 - [ ] Step 8: Populate boilerplate assets — copy `_templates/assets/cv-boilerplate.md` and `_templates/assets/cover-letter-boilerplate.md` into `assets/`. Fill fixed details: name, contact, education, salutations, sign-offs.
 - [ ] Step 9: Populate content assets — copy `_templates/assets/cv-content.md`, `_templates/assets/cover-letter-content.md`, and `_templates/assets/interview-answers.md` into `assets/`, replacing their example entries. Add blocks through the `promote-content` skill (the only writer to the bank), drawing on win stories and the phrasing sorted in Step 1.
-- [ ] Step 10: Save reference CVs and cover letters. For each CV or cover letter from Step 1 that the user would still send, save a markdown copy of its text to `assets/cv-references/` or `assets/cover-letter-references/`, named `YYYY-MM-DD-company-cv.md` or `YYYY-MM-DD-company-cover-letter.md` (the date it was sent; ask if unknown). `build-cv` and `build-cover-letter` use these as their model for length, density, and voice, and `promote-content` may lift wording from them — so save only documents whose claims were settled in Steps 6–7.
+- [ ] Step 10: Save reference CVs and cover letters. For each CV or cover letter from Step 1 that the user would still send, save a markdown copy of its text to `assets/cv-references/` or `assets/cover-letter-references/`, named `YYYY-MM-DD-company-cv.md` or `YYYY-MM-DD-company-cover-letter.md` (the date it was sent; ask if unknown). `build-cv` and `build-cover-letter` use these as their model for length, density, and voice, and `promote-content` may lift wording from them — so save only documents whose claims were settled in Steps 6–7. If some of a document's claims weren't, name them to the user and save it once they are.
 - [ ] Step 11: Create `tracker.md` — copy from `_templates/tracker.md` to the repo root.
 - [ ] Step 12: Offer to delete `example/`. It exists for browsing before setup; afterwards it only adds noise to searches.
 
